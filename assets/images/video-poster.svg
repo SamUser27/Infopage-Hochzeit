@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#4a4a34"/>
+  <circle cx="800" cy="450" r="80" fill="#f5efe2" opacity="0.88"/>
+  <polygon points="780,410 780,490 850,450" fill="#4a4a34"/>
+  <text x="50%" y="68%" text-anchor="middle" fill="#f5efe2" font-family="serif" font-size="46" opacity="0.9">
+    Video-Platzhalter
+  </text>
+</svg>

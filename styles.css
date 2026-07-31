@@ -1,0 +1,215 @@
+:root {
+  --bg-olive: #626240;
+  --bg-olive-dark: #505037;
+  --text-cream: #f5efe2;
+  --text-muted: #ece2cf;
+  --line-soft: rgba(245, 239, 226, 0.35);
+  --overlay: rgba(44, 48, 30, 0.5);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  background: var(--bg-olive);
+  color: var(--text-cream);
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+}
+
+.top-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem 1.2rem;
+  padding: 0.85rem 1rem;
+  background: rgba(50, 54, 34, 0.7);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.top-nav a {
+  color: var(--text-cream);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.top-nav a:hover,
+.top-nav a.is-active,
+.top-nav a:focus-visible {
+  color: #ffffff;
+}
+
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 8rem 1.5rem 4rem;
+}
+
+.section-solid {
+  background: linear-gradient(180deg, var(--bg-olive) 0%, var(--bg-olive-dark) 100%);
+}
+
+.section-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Ersetze diese Bildpfade später mit euren eigenen toskanischen Fotos */
+.section-image-hero {
+  background-image: url("assets/images/hero-toskana.svg");
+}
+
+.section-image-location {
+  background-image: url("assets/images/location-toskana.svg");
+}
+
+.section-image-dresscode {
+  background-image: url("assets/images/dresscode-toskana.svg");
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+}
+
+.narrow {
+  width: min(760px, 100%);
+}
+
+.centered {
+  text-align: center;
+}
+
+h1,
+h2,
+.date,
+.tagline {
+  margin: 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 1.2rem;
+}
+
+.date {
+  font-size: clamp(2.1rem, 7vw, 4.8rem);
+  margin-bottom: 2.3rem;
+}
+
+.subtitle {
+  margin-top: 0.9rem;
+  font-size: clamp(1.2rem, 3.6vw, 2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tagline {
+  margin-top: 2.5rem;
+  font-size: clamp(1.3rem, 4vw, 2.4rem);
+}
+
+p {
+  margin: 0 0 1.2rem;
+  font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+}
+
+.section-lead {
+  margin-bottom: 1.4rem;
+}
+
+.map-wrapper,
+.video-wrapper {
+  border: 1px solid var(--line-soft);
+  background: rgba(28, 30, 20, 0.65);
+  padding: 0.75rem;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  min-height: 320px;
+  border: 0;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+}
+
+.timeline span {
+  color: var(--text-muted);
+}
+
+video {
+  width: 100%;
+  display: block;
+  background: #111;
+}
+
+.rsvp p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .top-nav {
+    gap: 0.5rem 0.9rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .top-nav a {
+    font-size: 0.72rem;
+  }
+
+  .section {
+    padding-top: 7.2rem;
+    min-height: auto;
+  }
+
+  .timeline li {
+    grid-template-columns: 4.4rem 1fr;
+    gap: 0.8rem;
+  }
+}
