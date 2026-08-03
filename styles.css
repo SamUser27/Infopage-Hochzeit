@@ -74,7 +74,7 @@ body {
 
 /* Ersetze diese Bildpfade später mit euren eigenen toskanischen Fotos */
 .section-image-hero {
-  background-image: url("assets/images/hero-toskana.svg");
+  background-image: none;
   background-position: center 40%;
 }
 
