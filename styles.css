@@ -146,8 +146,30 @@ p {
   font-size: clamp(1.15rem, 2.8vw, 1.5rem);
 }
 
+.aside-note {
+  margin-top: 1.6rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line-soft);
+  color: rgba(245, 239, 226, 0.88);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-style: italic;
+}
+
 .section-lead {
   margin-bottom: 1.4rem;
+}
+
+.image-spot {
+  margin: 1.4rem 0 1.8rem;
+}
+
+.location-photo {
+  width: 100%;
+  max-height: 580px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line-soft);
+  background: rgba(28, 30, 20, 0.55);
 }
 
 .map-wrapper,
