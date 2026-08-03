@@ -74,8 +74,21 @@ body {
 
 /* Ersetze diese Bildpfade später mit euren eigenen toskanischen Fotos */
 .section-image-hero {
-  background-image: url("assets/images/hero-header.png"), url("assets/images/hero-toskana.svg");
+  background-image: url("assets/images/hero-toskana.svg");
   background-position: center 40%;
+}
+
+.hero {
+  overflow: hidden;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
 }
 
 .overlay {
