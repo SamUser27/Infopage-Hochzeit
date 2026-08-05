@@ -1,62 +1,12 @@
 const navLinks = document.querySelectorAll(".top-nav a");
 const heroSection = document.getElementById("hero");
-const polaroidCollage = document.querySelector(".polaroid-collage");
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     navLinks.forEach((item) => item.classList.remove("is-active"));
     link.classList.add("is-active");
-
-    if (link.getAttribute("href") === "#geschichte") {
-      window.setTimeout(() => {
-        polaroidCollage?.classList.add("is-inview");
-      }, 280);
-    }
   });
 });
-
-if (polaroidCollage) {
-  const activatePolaroids = () => {
-    polaroidCollage.classList.add("is-inview");
-  };
-
-  const revealIfVisible = () => {
-    const rect = polaroidCollage.getBoundingClientRect();
-    const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
-    const visibilityRatio = visibleHeight / Math.max(rect.height, 1);
-
-    if (visibilityRatio > 0.22) {
-      activatePolaroids();
-      window.removeEventListener("scroll", revealIfVisible);
-    }
-  };
-
-  if ("IntersectionObserver" in window) {
-    const polaroidObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            activatePolaroids();
-            observer.disconnect();
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-      }
-    );
-
-    polaroidObserver.observe(polaroidCollage);
-  } else {
-    activatePolaroids();
-  }
-
-  revealIfVisible();
-  window.addEventListener("scroll", revealIfVisible, { passive: true });
-  window.setTimeout(() => {
-    activatePolaroids();
-  }, 1800);
-}
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const petalCanvas = document.getElementById("petal-canvas");
@@ -73,15 +23,17 @@ if (petalCanvas) {
     let rafId = 0;
 
     const motionFactor = reduceMotion ? 0.62 : 1;
+    let petalSpeedScale = motionFactor;
 
     function resizeCanvas() {
       width = heroSection ? heroSection.clientWidth : window.innerWidth;
       height = heroSection ? heroSection.clientHeight : window.innerHeight;
       const mobile = width < 768;
-      const maxCap = reduceMotion ? (mobile ? 20 : 20) : mobile ? 34 : 44;
-      const minCap = reduceMotion ? (mobile ? 12 : 10) : mobile ? 18 : 20;
-      const density = reduceMotion ? 44 : 28;
+      const maxCap = reduceMotion ? (mobile ? 28 : 20) : mobile ? 52 : 44;
+      const minCap = reduceMotion ? (mobile ? 18 : 10) : mobile ? 30 : 20;
+      const density = reduceMotion ? (mobile ? 24 : 44) : mobile ? 18 : 28;
       maxPetals = Math.min(maxCap, Math.max(minCap, Math.floor(width / density)));
+      petalSpeedScale = motionFactor * (mobile ? 1.9 : 1);
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       petalCanvas.width = Math.floor(width * dpr);
@@ -106,12 +58,12 @@ if (petalCanvas) {
         y: startAboveViewport
           ? -Math.random() * height * 0.8 - 20
           : Math.random() * height,
-        speedY: (0.35 + Math.random() * 0.75) * motionFactor,
-        driftX: (Math.random() - 0.5) * 0.65 * motionFactor,
+        speedY: (0.35 + Math.random() * 0.75) * petalSpeedScale,
+        driftX: (Math.random() - 0.5) * 0.65 * petalSpeedScale,
         sway: Math.random() * Math.PI * 2,
-        swaySpeed: (0.008 + Math.random() * 0.017) * motionFactor,
+        swaySpeed: (0.008 + Math.random() * 0.017) * petalSpeedScale,
         rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02 * motionFactor,
+        rotationSpeed: (Math.random() - 0.5) * 0.02 * petalSpeedScale,
         scale,
         opacity: 0.25 + Math.random() * 0.4,
         shapeStretch: 0.6 + Math.random() * 0.35,

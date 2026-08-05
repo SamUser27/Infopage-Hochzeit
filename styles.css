@@ -210,7 +210,7 @@ p {
     0 10px 22px rgba(21, 23, 14, 0.34),
     0 2px 7px rgba(21, 23, 14, 0.2);
   transform-origin: center center;
-  opacity: 0;
+  opacity: 1;
 }
 
 .polaroid img {
@@ -224,38 +224,24 @@ p {
   --rot: -6deg;
   top: 0.6rem;
   left: 3%;
-  transform: translateY(28px) rotate(var(--rot));
+  transform: rotate(var(--rot));
   z-index: 1;
-  animation-delay: 0.05s;
 }
 
 .polaroid-b {
   --rot: 3deg;
   top: 0;
   left: 34%;
-  transform: translateY(28px) rotate(var(--rot));
+  transform: rotate(var(--rot));
   z-index: 3;
-  animation-delay: 0.18s;
 }
 
 .polaroid-c {
   --rot: -4deg;
   top: 1.2rem;
   left: 63%;
-  transform: translateY(28px) rotate(var(--rot));
+  transform: rotate(var(--rot));
   z-index: 2;
-  animation-delay: 0.32s;
-}
-
-.polaroid-collage.is-inview .polaroid {
-  animation: polaroid-in 0.75s ease forwards;
-}
-
-@keyframes polaroid-in {
-  to {
-    opacity: 1;
-    transform: translateY(0) rotate(var(--rot));
-  }
 }
 
 .section-lead {
@@ -507,25 +493,9 @@ p {
     position: static;
     width: 100%;
     max-width: 380px;
-    transform: translateY(20px);
+    transform: none;
     margin-inline: auto;
-    opacity: 0;
-  }
-
-  .polaroid-collage.is-inview .polaroid {
-    animation: polaroid-in-mobile 0.65s ease forwards;
-  }
-
-  .polaroid-collage.is-inview .polaroid-a {
-    animation-delay: 0.02s;
-  }
-
-  .polaroid-collage.is-inview .polaroid-b {
-    animation-delay: 0.14s;
-  }
-
-  .polaroid-collage.is-inview .polaroid-c {
-    animation-delay: 0.26s;
+    opacity: 1;
   }
 
   .timeline-horizontal {
@@ -582,12 +552,5 @@ p {
 
   .timeline-item:last-child {
     margin-bottom: 0;
-  }
-}
-
-@keyframes polaroid-in-mobile {
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
