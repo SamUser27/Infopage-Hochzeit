@@ -143,6 +143,10 @@ h1 {
   font-size: clamp(2.2rem, 5vw, 4.2rem);
 }
 
+.hero-names span {
+  display: inline;
+}
+
 h2 {
   font-size: clamp(1.8rem, 4vw, 3rem);
   margin-bottom: 1.2rem;
@@ -456,6 +460,15 @@ p {
     min-height: auto;
   }
 
+  .hero-names span {
+    display: block;
+    line-height: 1.06;
+  }
+
+  .hero-names span:nth-child(2) {
+    margin: 0.1rem 0;
+  }
+
   .location-mosaic {
     grid-template-columns: 1fr;
     grid-template-rows: none;
@@ -503,6 +516,10 @@ p {
     gap: 1.15rem;
     margin-top: 1.5rem;
     position: relative;
+  }
+
+  .timeline-track {
+    display: none;
   }
 
   .timeline-horizontal::before {
