@@ -6,29 +6,53 @@ navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     navLinks.forEach((item) => item.classList.remove("is-active"));
     link.classList.add("is-active");
+
+    if (link.getAttribute("href") === "#geschichte") {
+      window.setTimeout(() => {
+        polaroidCollage?.classList.add("is-inview");
+      }, 280);
+    }
   });
 });
 
 if (polaroidCollage) {
+  const activatePolaroids = () => {
+    polaroidCollage.classList.add("is-inview");
+  };
+
+  const revealIfVisible = () => {
+    const rect = polaroidCollage.getBoundingClientRect();
+    const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+    const visibilityRatio = visibleHeight / Math.max(rect.height, 1);
+
+    if (visibilityRatio > 0.22) {
+      activatePolaroids();
+      window.removeEventListener("scroll", revealIfVisible);
+    }
+  };
+
   if ("IntersectionObserver" in window) {
     const polaroidObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            polaroidCollage.classList.add("is-inview");
+            activatePolaroids();
             observer.disconnect();
           }
         });
       },
       {
-        threshold: 0.35,
+        threshold: 0.2,
       }
     );
 
     polaroidObserver.observe(polaroidCollage);
   } else {
-    polaroidCollage.classList.add("is-inview");
+    activatePolaroids();
   }
+
+  revealIfVisible();
+  window.addEventListener("scroll", revealIfVisible, { passive: true });
 }
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");

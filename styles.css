@@ -422,10 +422,10 @@ p {
   color: var(--text-cream);
 }
 
-.timeline-node-emoji {
-  font-size: 1.45rem;
-  line-height: 1;
-  filter: saturate(0.5) brightness(1.08);
+.timeline-node-svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--text-cream);
 }
 
 .timeline-time {
