@@ -28,10 +28,19 @@ body {
   letter-spacing: 0.03em;
 }
 
+.petal-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
 .top-nav {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 10;
+  z-index: 15;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -48,6 +57,9 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.1;
 }
 
 .top-nav a:hover,
@@ -90,7 +102,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center 58%;
 }
 
 .overlay {
@@ -105,7 +117,7 @@ body {
 
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 5;
   width: min(980px, 100%);
 }
 
@@ -171,7 +183,7 @@ p {
 }
 
 .aside-note {
-  margin-top: 1.6rem;
+  margin-top: 0.7rem;
   padding-left: 1rem;
   border-left: 1px solid var(--line-soft);
   color: rgba(245, 239, 226, 0.88);
@@ -197,6 +209,8 @@ p {
     0 10px 22px rgba(21, 23, 14, 0.34),
     0 2px 7px rgba(21, 23, 14, 0.2);
   transform-origin: center center;
+  opacity: 0;
+  animation: polaroid-in 0.75s ease forwards;
 }
 
 .polaroid img {
@@ -207,24 +221,37 @@ p {
 }
 
 .polaroid-a {
+  --rot: -6deg;
   top: 0.6rem;
   left: 3%;
-  transform: rotate(-6deg);
+  transform: translateY(28px) rotate(var(--rot));
   z-index: 1;
+  animation-delay: 0.05s;
 }
 
 .polaroid-b {
+  --rot: 3deg;
   top: 0;
   left: 34%;
-  transform: rotate(3deg);
+  transform: translateY(28px) rotate(var(--rot));
   z-index: 3;
+  animation-delay: 0.18s;
 }
 
 .polaroid-c {
+  --rot: -4deg;
   top: 1.2rem;
   left: 63%;
-  transform: rotate(-4deg);
+  transform: translateY(28px) rotate(var(--rot));
   z-index: 2;
+  animation-delay: 0.32s;
+}
+
+@keyframes polaroid-in {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rot));
+  }
 }
 
 .section-lead {
@@ -304,6 +331,13 @@ p {
 .mosaic-pano {
   grid-column: 1 / -1;
   grid-row: 3;
+}
+
+.location-address {
+  margin-top: 0.75rem;
+  color: rgba(245, 239, 226, 0.9);
+  font-size: clamp(1rem, 2.3vw, 1.18rem);
+  letter-spacing: 0.02em;
 }
 
 .map-wrapper {
@@ -397,6 +431,10 @@ p {
   text-transform: uppercase;
 }
 
+.timeline-time.is-open {
+  letter-spacing: 0.02em;
+}
+
 .timeline-label {
   margin: 0;
   font-size: clamp(1rem, 2.2vw, 1.15rem);
@@ -463,6 +501,8 @@ p {
     max-width: 380px;
     transform: none;
     margin-inline: auto;
+    opacity: 1;
+    animation: none;
   }
 
   .timeline-horizontal {
