@@ -193,8 +193,8 @@ p {
 
 .polaroid-collage {
   position: relative;
-  margin: 2.4rem auto 2rem;
-  min-height: 480px;
+  margin: 2.2rem auto 0.75rem;
+  min-height: 390px;
   width: min(760px, 100%);
 }
 
@@ -418,6 +418,12 @@ p {
   color: var(--text-cream);
 }
 
+.timeline-node-emoji {
+  font-size: 1.45rem;
+  line-height: 1;
+  filter: saturate(0.5) brightness(1.08);
+}
+
 .timeline-node.is-dashed {
   border-style: dashed;
   background: rgba(28, 30, 20, 0.42);
@@ -433,6 +439,7 @@ p {
 
 .timeline-time.is-open {
   letter-spacing: 0.02em;
+  opacity: 0.6;
 }
 
 .timeline-label {
