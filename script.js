@@ -1,4 +1,5 @@
 const navLinks = document.querySelectorAll(".top-nav a");
+const heroSection = document.getElementById("hero");
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
@@ -15,14 +16,15 @@ if (petalCanvas && !prefersReducedMotion.matches) {
 
   if (ctx) {
     const petals = [];
-    const maxPetals = Math.min(56, Math.max(26, Math.floor(window.innerWidth / 24)));
+    let maxPetals = 30;
     let width = 0;
     let height = 0;
     let rafId = 0;
 
     function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      width = heroSection ? heroSection.clientWidth : window.innerWidth;
+      height = heroSection ? heroSection.clientHeight : window.innerHeight;
+      maxPetals = Math.min(44, Math.max(20, Math.floor(width / 28)));
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       petalCanvas.width = Math.floor(width * dpr);
@@ -30,6 +32,14 @@ if (petalCanvas && !prefersReducedMotion.matches) {
       petalCanvas.style.width = `${width}px`;
       petalCanvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      if (petals.length < maxPetals) {
+        while (petals.length < maxPetals) {
+          petals.push(createPetal(false));
+        }
+      } else if (petals.length > maxPetals) {
+        petals.length = maxPetals;
+      }
     }
 
     function createPetal(startAboveViewport = true) {
@@ -39,10 +49,10 @@ if (petalCanvas && !prefersReducedMotion.matches) {
         y: startAboveViewport
           ? -Math.random() * height * 0.8 - 20
           : Math.random() * height,
-        speedY: 0.45 + Math.random() * 0.95,
+        speedY: 0.35 + Math.random() * 0.75,
         driftX: (Math.random() - 0.5) * 0.65,
         sway: Math.random() * Math.PI * 2,
-        swaySpeed: 0.011 + Math.random() * 0.022,
+        swaySpeed: 0.008 + Math.random() * 0.017,
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.02,
         scale,
