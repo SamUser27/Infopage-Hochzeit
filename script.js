@@ -1,5 +1,6 @@
 const navLinks = document.querySelectorAll(".top-nav a");
 const heroSection = document.getElementById("hero");
+const polaroidCollage = document.querySelector(".polaroid-collage");
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
@@ -7,6 +8,28 @@ navLinks.forEach((link) => {
     link.classList.add("is-active");
   });
 });
+
+if (polaroidCollage) {
+  if ("IntersectionObserver" in window) {
+    const polaroidObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            polaroidCollage.classList.add("is-inview");
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    polaroidObserver.observe(polaroidCollage);
+  } else {
+    polaroidCollage.classList.add("is-inview");
+  }
+}
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const petalCanvas = document.getElementById("petal-canvas");

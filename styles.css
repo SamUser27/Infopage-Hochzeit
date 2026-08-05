@@ -70,7 +70,7 @@ body {
 
 .section {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   display: grid;
   place-items: center;
   padding: 8rem 1.5rem 4rem;
@@ -93,6 +93,7 @@ body {
 }
 
 .hero {
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -210,7 +211,6 @@ p {
     0 2px 7px rgba(21, 23, 14, 0.2);
   transform-origin: center center;
   opacity: 0;
-  animation: polaroid-in 0.75s ease forwards;
 }
 
 .polaroid img {
@@ -245,6 +245,10 @@ p {
   transform: translateY(28px) rotate(var(--rot));
   z-index: 2;
   animation-delay: 0.32s;
+}
+
+.polaroid-collage.is-inview .polaroid {
+  animation: polaroid-in 0.75s ease forwards;
 }
 
 @keyframes polaroid-in {
@@ -293,8 +297,9 @@ p {
   margin: 1.2rem 0 1.25rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: clamp(145px, 16vw, 210px) clamp(145px, 16vw, 210px) clamp(150px, 18vw, 230px);
+  grid-template-rows: clamp(145px, 16vw, 210px) clamp(145px, 16vw, 210px);
   gap: 0.65rem;
+  align-items: stretch;
 }
 
 .location-mosaic figure {
@@ -326,11 +331,6 @@ p {
 .mosaic-small-bottom {
   grid-column: 2;
   grid-row: 2;
-}
-
-.mosaic-pano {
-  grid-column: 1 / -1;
-  grid-row: 3;
 }
 
 .location-address {
@@ -397,10 +397,14 @@ p {
 .timeline-item {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 4rem auto 1fr;
+  align-content: start;
+  justify-items: center;
+  align-items: start;
   text-align: center;
+  min-width: 0;
+  padding-inline: 0.25rem;
 }
 
 .timeline-node {
@@ -424,17 +428,13 @@ p {
   filter: saturate(0.5) brightness(1.08);
 }
 
-.timeline-node.is-dashed {
-  border-style: dashed;
-  background: rgba(28, 30, 20, 0.42);
-}
-
 .timeline-time {
   margin: 0.9rem 0 0.15rem;
   font-size: clamp(1rem, 2.3vw, 1.2rem);
   color: var(--text-muted);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  min-height: 1.35em;
 }
 
 .timeline-time.is-open {
@@ -446,6 +446,7 @@ p {
   margin: 0;
   font-size: clamp(1rem, 2.2vw, 1.15rem);
   line-height: 1.45;
+  max-width: 22ch;
 }
 
 .rsvp p:last-child {
@@ -476,8 +477,7 @@ p {
 
   .mosaic-main,
   .mosaic-small-top,
-  .mosaic-small-bottom,
-  .mosaic-pano {
+  .mosaic-small-bottom {
     grid-column: 1;
     grid-row: auto;
   }
@@ -506,10 +506,25 @@ p {
     position: static;
     width: 100%;
     max-width: 380px;
-    transform: none;
+    transform: translateY(20px);
     margin-inline: auto;
-    opacity: 1;
-    animation: none;
+    opacity: 0;
+  }
+
+  .polaroid-collage.is-inview .polaroid {
+    animation: polaroid-in-mobile 0.65s ease forwards;
+  }
+
+  .polaroid-collage.is-inview .polaroid-a {
+    animation-delay: 0.02s;
+  }
+
+  .polaroid-collage.is-inview .polaroid-b {
+    animation-delay: 0.14s;
+  }
+
+  .polaroid-collage.is-inview .polaroid-c {
+    animation-delay: 0.26s;
   }
 
   .timeline-horizontal {
@@ -568,5 +583,12 @@ p {
 
   .timeline-item:last-child {
     margin-bottom: 0;
+  }
+}
+
+@keyframes polaroid-in-mobile {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
