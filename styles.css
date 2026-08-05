@@ -497,17 +497,20 @@ p {
 
   .polaroid-collage {
     min-height: auto;
-    margin: 1.5rem 0 1.7rem;
+    margin: 1.25rem 0 1.4rem;
     display: grid;
-    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+    align-items: start;
   }
 
   .polaroid {
     position: static;
     width: 100%;
-    max-width: 380px;
+    max-width: none;
     transform: none;
-    margin-inline: auto;
+    margin-inline: 0;
+    padding: 0.35rem 0.35rem 0.78rem;
     opacity: 1;
   }
 
