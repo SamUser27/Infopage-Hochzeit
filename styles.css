@@ -43,6 +43,7 @@ body {
   z-index: 15;
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   justify-content: center;
   gap: 0.9rem 1.2rem;
   padding: 0.85rem 1rem;
@@ -59,6 +60,8 @@ body {
   font-size: 0.85rem;
   display: inline-flex;
   align-items: center;
+  min-height: 2.1rem;
+  padding: 0.1rem 0;
   line-height: 1.1;
 }
 
@@ -143,8 +146,16 @@ h1 {
   font-size: clamp(2.2rem, 5vw, 4.2rem);
 }
 
+.hero-names {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35em;
+}
+
 .hero-names span {
-  display: inline;
+  display: inline-block;
 }
 
 h2 {
@@ -374,6 +385,7 @@ p {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.8rem;
+  align-items: start;
 }
 
 .timeline-track {
@@ -390,9 +402,9 @@ p {
   z-index: 1;
   display: grid;
   grid-template-rows: 4rem 2rem minmax(4.4rem, auto);
+  row-gap: 0.45rem;
   align-content: start;
   justify-items: center;
-  align-items: start;
   text-align: center;
   min-width: 0;
   padding-inline: 0.25rem;
@@ -406,6 +418,7 @@ p {
   background: rgba(28, 30, 20, 0.65);
   display: grid;
   place-items: center;
+  align-self: start;
 }
 
 .timeline-node i {
@@ -414,7 +427,7 @@ p {
 }
 
 .timeline-time {
-  margin: 0.9rem 0 0.15rem;
+  margin: 0;
   font-size: clamp(1rem, 2.3vw, 1.2rem);
   color: var(--text-muted);
   letter-spacing: 0.06em;
@@ -422,6 +435,7 @@ p {
   min-height: 2rem;
   display: grid;
   place-items: center;
+  align-self: start;
 }
 
 .timeline-time.is-open {
@@ -431,9 +445,14 @@ p {
 
 .timeline-label {
   margin: 0;
+  width: min(100%, 10rem);
+  max-width: 10rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   font-size: clamp(1rem, 2.2vw, 1.15rem);
   line-height: 1.45;
-  max-width: 14ch;
+  text-align: left;
 }
 
 .rsvp p:last-child {
@@ -456,6 +475,10 @@ p {
     min-height: auto;
   }
 
+  .hero-names {
+    display: block;
+  }
+
   .hero-names span {
     display: block;
     line-height: 1.06;
@@ -463,6 +486,10 @@ p {
 
   .hero-names span:nth-child(2) {
     margin: 0.1rem 0;
+  }
+
+  .subtitle {
+    margin-top: 1.35rem;
   }
 
   .location-mosaic {
