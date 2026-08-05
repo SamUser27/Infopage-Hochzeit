@@ -58,20 +58,27 @@ if (polaroidCollage) {
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const petalCanvas = document.getElementById("petal-canvas");
 
-if (petalCanvas && !prefersReducedMotion.matches) {
+if (petalCanvas) {
   const ctx = petalCanvas.getContext("2d");
 
   if (ctx) {
+    const reduceMotion = prefersReducedMotion.matches;
     const petals = [];
     let maxPetals = 30;
     let width = 0;
     let height = 0;
     let rafId = 0;
 
+    const motionFactor = reduceMotion ? 0.62 : 1;
+
     function resizeCanvas() {
       width = heroSection ? heroSection.clientWidth : window.innerWidth;
       height = heroSection ? heroSection.clientHeight : window.innerHeight;
-      maxPetals = Math.min(44, Math.max(20, Math.floor(width / 28)));
+      const mobile = width < 768;
+      const maxCap = reduceMotion ? (mobile ? 14 : 20) : mobile ? 26 : 44;
+      const minCap = reduceMotion ? (mobile ? 8 : 10) : mobile ? 14 : 20;
+      const density = reduceMotion ? 44 : 28;
+      maxPetals = Math.min(maxCap, Math.max(minCap, Math.floor(width / density)));
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       petalCanvas.width = Math.floor(width * dpr);
@@ -96,14 +103,14 @@ if (petalCanvas && !prefersReducedMotion.matches) {
         y: startAboveViewport
           ? -Math.random() * height * 0.8 - 20
           : Math.random() * height,
-        speedY: 0.35 + Math.random() * 0.75,
-        driftX: (Math.random() - 0.5) * 0.65,
+        speedY: (0.35 + Math.random() * 0.75) * motionFactor,
+        driftX: (Math.random() - 0.5) * 0.65 * motionFactor,
         sway: Math.random() * Math.PI * 2,
-        swaySpeed: 0.008 + Math.random() * 0.017,
+        swaySpeed: (0.008 + Math.random() * 0.017) * motionFactor,
         rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
+        rotationSpeed: (Math.random() - 0.5) * 0.02 * motionFactor,
         scale,
-        opacity: 0.35 + Math.random() * 0.45,
+        opacity: 0.25 + Math.random() * 0.4,
         shapeStretch: 0.6 + Math.random() * 0.35,
       };
     }
@@ -156,18 +163,29 @@ if (petalCanvas && !prefersReducedMotion.matches) {
       rafId = window.requestAnimationFrame(animate);
     }
 
+    function startAnimation() {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(animate);
+      }
+    }
+
     resizeCanvas();
     for (let i = 0; i < maxPetals; i += 1) {
       petals.push(createPetal(false));
     }
-    animate();
+    startAnimation();
 
     window.addEventListener("resize", resizeCanvas, { passive: true });
+    window.addEventListener("pageshow", () => {
+      resizeCanvas();
+      startAnimation();
+    });
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         window.cancelAnimationFrame(rafId);
+        rafId = 0;
       } else {
-        animate();
+        startAnimation();
       }
     });
   }
