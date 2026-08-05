@@ -53,6 +53,9 @@ if (polaroidCollage) {
 
   revealIfVisible();
   window.addEventListener("scroll", revealIfVisible, { passive: true });
+  window.setTimeout(() => {
+    activatePolaroids();
+  }, 1800);
 }
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -75,8 +78,8 @@ if (petalCanvas) {
       width = heroSection ? heroSection.clientWidth : window.innerWidth;
       height = heroSection ? heroSection.clientHeight : window.innerHeight;
       const mobile = width < 768;
-      const maxCap = reduceMotion ? (mobile ? 14 : 20) : mobile ? 26 : 44;
-      const minCap = reduceMotion ? (mobile ? 8 : 10) : mobile ? 14 : 20;
+      const maxCap = reduceMotion ? (mobile ? 20 : 20) : mobile ? 34 : 44;
+      const minCap = reduceMotion ? (mobile ? 12 : 10) : mobile ? 18 : 20;
       const density = reduceMotion ? 44 : 28;
       maxPetals = Math.min(maxCap, Math.max(minCap, Math.floor(width / density)));
 

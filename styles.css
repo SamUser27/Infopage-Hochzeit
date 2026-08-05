@@ -334,10 +334,11 @@ p {
 }
 
 .location-address {
-  margin-top: 0.75rem;
+  margin-top: 0.28rem;
   color: rgba(245, 239, 226, 0.9);
   font-size: clamp(1rem, 2.3vw, 1.18rem);
   letter-spacing: 0.02em;
+  font-style: italic;
 }
 
 .map-wrapper {
@@ -529,56 +530,54 @@ p {
 
   .timeline-horizontal {
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: 1.15rem;
     margin-top: 1.5rem;
+    position: relative;
   }
 
-  .timeline-track {
-    display: none;
+  .timeline-horizontal::before {
+    content: "";
+    position: absolute;
+    left: 1.3rem;
+    top: 0.7rem;
+    bottom: 0.75rem;
+    width: 1px;
+    background: var(--line-soft);
   }
 
   .timeline-item {
-    align-items: flex-start;
+    position: relative;
+    display: block;
     text-align: left;
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    grid-template-areas:
-      "node time"
-      "node label";
-    column-gap: 0.85rem;
-    row-gap: 0.2rem;
+    padding-left: 3.2rem;
+    min-height: 2.9rem;
   }
 
   .timeline-node {
-    grid-area: node;
+    position: absolute;
+    left: 0;
+    top: 0.08rem;
     width: 2.6rem;
     height: 2.6rem;
-    position: relative;
-    margin-top: 0.2rem;
   }
 
   .timeline-node i {
     font-size: 1.25rem;
   }
 
-  .timeline-item:not(:last-child) .timeline-node::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    width: 1px;
-    height: 1.35rem;
-    transform: translateX(-50%);
-    background: var(--line-soft);
+  .timeline-node-svg {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   .timeline-time {
-    grid-area: time;
-    margin: 0;
+    margin: 0 0 0.2rem;
+    min-height: 0;
   }
 
   .timeline-label {
-    grid-area: label;
+    margin: 0;
+    max-width: none;
   }
 
   .timeline-item:last-child {
