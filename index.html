@@ -18,7 +18,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css"
     />
-    <link rel="stylesheet" href="styles.css?v=20260806-5" />
+    <link rel="stylesheet" href="styles.css?v=20260806-6" />
   </head>
   <body>
     <header class="top-nav">
@@ -237,24 +237,20 @@
 
       <section id="video" class="section section-solid">
         <div class="content">
-          <h2>Video der Unterkunft</h2>
+          <h2>Video der Location</h2>
           <p class="section-lead">
-            Ein kurzer Eindruck der Unterkunft:
+            Ein kurzer Eindruck der Location:
           </p>
           <div class="video-wrapper">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/KsOF-mf-cgw?rel=0"
-              title="Video der Unterkunft auf YouTube"
-              loading="lazy"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+            <video
+              controls
+              preload="metadata"
+              playsinline
+            >
+              <source src="Bilder/ShowVideoPoderePiandarca.mp4" type="video/mp4" />
+              Dein Browser unterstuetzt das Video-Element nicht.
+            </video>
           </div>
-          <p class="video-hint">
-            Falls das Video nicht lädt, direkt auf
-            <a href="https://www.youtube.com/watch?v=KsOF-mf-cgw" target="_blank" rel="noreferrer">YouTube öffnen</a>.
-          </p>
         </div>
       </section>
 

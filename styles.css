@@ -369,14 +369,13 @@ p {
   display: block;
 }
 
-.video-hint {
-  margin-top: 0.8rem;
-  color: rgba(245, 239, 226, 0.85);
-  font-size: clamp(1rem, 2.4vw, 1.2rem);
-}
-
-.video-hint a {
-  color: #fff;
+.video-wrapper video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 280px;
+  display: block;
+  object-fit: cover;
+  background: rgba(18, 20, 12, 0.75);
 }
 
 .timeline-horizontal {
